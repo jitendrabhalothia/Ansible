@@ -1,0 +1,15 @@
+--- # localhost
+- hosts: localhost
+  connection: local
+  become: yes
+  gather_facts: yes
+  vars_files:
+  - /root/AWS/awscred.yml
+  tasks:
+  - name: key creation
+    ec2_key:
+      aws_access_key:  "{{ aws_id}}"
+      aws_secret_key:  "{{ aws_key }}"
+      name: ansible
+      region: us-east-1
+      state: present
